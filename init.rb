@@ -6,3 +6,8 @@ Redmine::Plugin.register :redmine_ruby_wasm do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 end
+
+plugin_path = Pathname(__dir__)
+plugin_path.glob("{app,lib}/**/*.rb").sort.each do |path|
+  require(path)
+end

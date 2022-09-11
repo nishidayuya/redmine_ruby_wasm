@@ -1,0 +1,2 @@
+module RedmineRubyWasm
+end
