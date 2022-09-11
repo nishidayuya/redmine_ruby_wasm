@@ -1,10 +1,10 @@
 Redmine::Plugin.register :redmine_ruby_wasm do
-  name 'Redmine Ruby Wasm plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
-  version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  name 'Redmine ruby.wasm plugin'
+  author 'Yuya.Nishida.'
+  description 'This is a plugin to run Ruby code on Redmine'
+  version '0.1.0'
+  url 'https://github.com/nishidayuya/redmine_ruby_wasm'
+  author_url 'https://twitter.com/nishidayuya'
 end
 
 plugin_path = Pathname(__dir__)
