@@ -1,9 +1,52 @@
 version: 2.1
 
+orbs:
+  redmine-plugin: agileware-jp/redmine-plugin@2.3.0
+
 jobs:
-  build:
-    docker:
-      - image: cimg/ruby:2.7.2
+  run_tests:
+    parameters:
+      redmine_version:
+        type: string
+        default: latest
+      redmine_product:
+        type: string
+        default: redmine
+      ruby_version:
+        type: string
+        default: latest
+      database:
+        type: enum
+        enum:
+          - mysql
+          - pg
+          - mariadb
+          - sqlite3
+        default: pg
+    executor:
+      name: redmine-plugin/ruby-<< parameters.database >>
+      ruby_version: << parameters.ruby_version >>
     steps:
       - checkout
-      - run: ruby --version
+      - redmine-plugin/download-redmine:
+          version: << parameters.redmine_version >>
+          product: << parameters.redmine_product >>
+      - run:
+          working_directory: redmine
+          command: |
+            touch Gemfile.local
+      - redmine-plugin/install-self
+      - redmine-plugin/generate-database_yml
+      - redmine-plugin/bundle-install
+      - redmine-plugin/test
+      - store_artifacts:
+          path: redmine/tmp/screenshots
+          destination: screenshots
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - run_tests:
+          redmine_version: latest
+          ruby_version: "2.7"
