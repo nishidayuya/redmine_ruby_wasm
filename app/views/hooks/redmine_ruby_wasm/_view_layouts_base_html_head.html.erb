@@ -28,7 +28,7 @@
     modal: true,
   )
 
-  node_list = document.querySelectorAll(%Q{code[data-language="ruby"]})
+  node_list = document.querySelectorAll("code.ruby.syntaxhl")
   JsArray.from(node_list).forEach do |code_node|
     code_node.addEventListener("click") do |_pointer_event|
       code = code_node[:innerText].to_s
