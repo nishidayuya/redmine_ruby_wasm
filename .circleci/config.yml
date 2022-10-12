@@ -65,11 +65,16 @@ workflows:
           ruby_version: "2.6"
       # Redmine versions
       - run_tests:
-          name: redmine-5.0.3
+          name: redmine-5.0
           redmine_version: "5.0.3"
       - run_tests:
-          name: redmine-5.0.0
-          redmine_version: "5.0.0"
+          name: redmine-4.2
+          redmine_version: "4.2.8"
+          ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.8/Gemfile#L3
+      - run_tests:
+          name: redmine-4.1
+          redmine_version: "4.1.7"
+          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.1.7/Gemfile#L3
       # Databases
       - run_tests:
           name: MySQL
