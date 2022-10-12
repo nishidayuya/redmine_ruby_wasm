@@ -1,5 +1,9 @@
 # Redmine ruby.wasm plugin: A plugin to run Ruby code on Redmine
 
+[![License X11](https://img.shields.io/badge/license-X11-blue.svg)](https://raw.githubusercontent.com/nishidayuya/redmine_ruby_wasm/master/LICENSE.txt)
+[![Latest tag](https://img.shields.io/github/v/tag/nishidayuya/redmine_ruby_wasm)](https://github.com/nishidayuya/redmine_ruby_wasm/tags)
+[![Build Status](https://img.shields.io/circleci/build/github/nishidayuya/redmine_ruby_wasm)](https://app.circleci.com/pipelines/github/nishidayuya/redmine_ruby_wasm)
+
 ## Screenshot
 
 In Redmine's issue page:
