@@ -1,6 +1,4 @@
-# redmine_ruby_wasm
-
-A plugin to run Ruby code on Redmine.
+# Redmine ruby.wasm plugin: A plugin to run Ruby code on Redmine
 
 ## Screenshot
 
