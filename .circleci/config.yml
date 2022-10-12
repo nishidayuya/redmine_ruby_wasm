@@ -48,5 +48,35 @@ workflows:
   test:
     jobs:
       - run_tests:
-          redmine_version: latest
+          name: latest Ruby, latest Redmine, PostgreSQL
+      # Ruby versions
+      #
+      # About no ruby-3.1:
+      # CircleCI doesn't create circleci/ruby:3.1-node-browsers .
+      # So, we must implement https://github.com/agileware-jp/redmine-plugin-orb/pull/50
+      - run_tests:
+          name: ruby-3.0
+          ruby_version: "3.0"
+      - run_tests:
+          name: ruby-2.7
           ruby_version: "2.7"
+      - run_tests:
+          name: ruby-2.6
+          ruby_version: "2.6"
+      # Redmine versions
+      - run_tests:
+          name: redmine-5.0.3
+          redmine_version: "5.0.3"
+      - run_tests:
+          name: redmine-5.0.0
+          redmine_version: "5.0.0"
+      # Databases
+      - run_tests:
+          name: MySQL
+          database: mysql
+      - run_tests:
+          name: MariaDB
+          database: mariadb
+      - run_tests:
+          name: SQLite
+          database: sqlite3
