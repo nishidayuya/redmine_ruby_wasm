@@ -73,7 +73,11 @@ class RedmineRubyWasm::IssuesTest < RedmineRubyWasm::ApplicationSystemTestCase
   end
 
   class CodeInComment < self
-    CODE_SELECTOR = "#history .note > .wiki > pre > code"
+    CODE_SELECTOR = if Redmine::VERSION::MAJOR >= 5
+                      "#history .note > .wiki > pre > code"
+                    else
+                      "#history .journal .wiki > pre > code"
+                    end
 
     setup do
       issue.journals.create!(user: user, notes: RUBY_CODE_WITH_CODEBLOCK)
