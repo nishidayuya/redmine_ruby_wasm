@@ -1,6 +1,8 @@
 # Load the Redmine helper
 require File.expand_path("../../../test/test_helper", __dir__)
 
+Capybara.default_max_wait_time = 10
+
 module RedmineRubyWasm::Lettable
   def let(name, &block)
     instance_variable_name = :"@__let__#{name}"
