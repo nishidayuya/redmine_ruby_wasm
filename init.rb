@@ -11,3 +11,6 @@ plugin_path = Pathname(__dir__)
 plugin_path.glob("{app,lib}/**/*.rb").sort.each do |path|
   require(path)
 end
+
+RedmineRubyWasm.include_to_helper(ApplicationHelper,
+                                  RedmineRubyWasm::ApplicationHelper)
