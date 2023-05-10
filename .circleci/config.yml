@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  redmine-plugin: agileware-jp/redmine-plugin@dev:0b938e6
+  redmine-plugin: agileware-jp/redmine-plugin@3.2.0
 
 jobs:
   run_tests:
