@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  redmine-plugin: agileware-jp/redmine-plugin@3.0.0
+  redmine-plugin: agileware-jp/redmine-plugin@3.1.1
 
 jobs:
   run_tests:
@@ -31,10 +31,6 @@ jobs:
       - redmine-plugin/download-redmine:
           version: << parameters.redmine_version >>
           product: << parameters.redmine_product >>
-      - run:
-          working_directory: redmine
-          command: |
-            touch Gemfile.local
       - redmine-plugin/install-self
       - redmine-plugin/generate-database_yml
       - redmine-plugin/bundle-install
