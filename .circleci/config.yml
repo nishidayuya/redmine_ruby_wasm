@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  redmine-plugin: agileware-jp/redmine-plugin@3.0.0
+  redmine-plugin: agileware-jp/redmine-plugin@3.2.0
 
 jobs:
   run_tests:
@@ -31,10 +31,6 @@ jobs:
       - redmine-plugin/download-redmine:
           version: << parameters.redmine_version >>
           product: << parameters.redmine_product >>
-      - run:
-          working_directory: redmine
-          command: |
-            touch Gemfile.local
       - redmine-plugin/install-self
       - redmine-plugin/generate-database_yml
       - redmine-plugin/bundle-install
@@ -42,6 +38,28 @@ jobs:
       - store_artifacts:
           path: redmine/tmp/screenshots
           destination: screenshots
+      - run:
+          name: Output versions
+          when: always
+          working_directory: redmine
+          command: |
+            set -eux -o pipefail
+            lsb_release --all
+            google-chrome --version
+            chromedriver --version
+            ruby --version
+            bin/rails runner --environment=test 'p(Redmine::VERSION::ARRAY)'
+            gem --version
+            bundle --version
+      - run:
+          name: Output gem versions
+          when: always
+          working_directory: redmine
+          command: bundle list
+      - run:
+          name: Output deb package versions
+          when: always
+          command: dpkg -l
 
 workflows:
   version: 2
@@ -64,15 +82,15 @@ workflows:
       # Redmine versions
       - run_tests:
           name: redmine-5.0
-          redmine_version: "5.0.5"
+          redmine_version: "5.0"
           ruby_version: "3.1" # https://github.com/redmine/redmine/blob/5.0.5/Gemfile#L3
       - run_tests:
           name: redmine-4.2
-          redmine_version: "4.2.10"
+          redmine_version: "4.2"
           ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.10/Gemfile#L3
       - run_tests:
           name: redmine-4.1
-          redmine_version: "4.1.7"
+          redmine_version: "4.1"
           ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.1.7/Gemfile#L3
       # Databases
       - run_tests:
