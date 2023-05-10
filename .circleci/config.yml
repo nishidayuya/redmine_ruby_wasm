@@ -38,6 +38,28 @@ jobs:
       - store_artifacts:
           path: redmine/tmp/screenshots
           destination: screenshots
+      - run:
+          name: Output versions
+          when: always
+          working_directory: redmine
+          command: |
+            set -eux -o pipefail
+            lsb_release --all
+            google-chrome --version
+            chromedriver --version
+            ruby --version
+            bin/rails runner --environment=test 'p(Redmine::VERSION::ARRAY)'
+            gem --version
+            bundle --version
+      - run:
+          name: Output gem versions
+          when: always
+          working_directory: redmine
+          command: bundle list
+      - run:
+          name: Output deb package versions
+          when: always
+          command: dpkg -l
 
 workflows:
   version: 2
