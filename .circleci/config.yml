@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  redmine-plugin: agileware-jp/redmine-plugin@3.2.0
+  redmine-plugin: agileware-jp/redmine-plugin@3.6.1
 
 jobs:
   run_tests:
@@ -78,6 +78,10 @@ workflows:
           ruby_version: "2.7"
       - run_tests:
           name: ruby-2.6
+          # redmine-5.1 does not support ruby-2.6
+          # https://github.com/redmine/redmine/blob/5.1.3/Gemfile#L3
+          # https://github.com/redmine/redmine/blob/5.0.9/Gemfile#L3
+          redmine_version: "5.0"
           ruby_version: "2.6"
       # Redmine versions
       - run_tests:
@@ -88,10 +92,6 @@ workflows:
           name: redmine-4.2
           redmine_version: "4.2"
           ruby_version: "2.7" # https://github.com/redmine/redmine/blob/4.2.10/Gemfile#L3
-      - run_tests:
-          name: redmine-4.1
-          redmine_version: "4.1"
-          ruby_version: "2.6" # https://github.com/redmine/redmine/blob/4.1.7/Gemfile#L3
       # Databases
       - run_tests:
           name: MySQL
