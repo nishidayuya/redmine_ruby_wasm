@@ -65,6 +65,15 @@ workflows:
   version: 2
   test:
     jobs:
+      # https://github.com/redmine/redmine/blob/6.1.0/Gemfile#L3
+      - run_tests:
+          name: redmine-6.1 ruby-3.4
+          redmine_version: "6.1"
+          ruby_version: "3.4"
+      - run_tests:
+          name: redmine-6.1 ruby-3.2
+          redmine_version: "6.1"
+          ruby_version: "3.2"
       # https://github.com/redmine/redmine/blob/6.0.7/Gemfile#L3
       - run_tests:
           name: redmine-6.0 ruby-3.3
