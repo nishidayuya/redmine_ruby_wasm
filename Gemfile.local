@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 
+gem "strscan", "< 3.1.6" if Gem::Version.new(RUBY_VERSION) < Gem::Version.new("2.6")
+
 group :test do
-  dependencies.reject! { |i| i.name == 'minitest' }
-  gem 'minitest', '< 6.0' # like https://github.com/redmine/redmine/commit/4488f50ea0aeecfd5fa2e1e2184229601aad673c
+  dependencies.reject! { |i| i.name == "minitest" }
+  gem "minitest", "< 6.0" # like https://github.com/redmine/redmine/commit/4488f50ea0aeecfd5fa2e1e2184229601aad673c
 end
