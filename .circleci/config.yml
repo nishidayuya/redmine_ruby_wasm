@@ -101,14 +101,26 @@ workflows:
           name: redmine-5.0 ruby-2.5
           redmine_version: "5.0"
           ruby_version: "2.5"
+      - run_tests:
+          name: redmine-5.0 ruby-2.6
+          redmine_version: "5.0"
+          ruby_version: "2.6"
+      - run_tests:
+          name: redmine-5.0 ruby-2.7
+          redmine_version: "5.0"
+          ruby_version: "2.7"
+      - run_tests:
+          name: redmine-5.0 ruby-3.0
+          redmine_version: "5.0"
+          ruby_version: "3.0"
       # https://github.com/redmine/redmine/blob/4.2.11/Gemfile#L3
       - run_tests:
           name: redmine-4.2 ruby-2.7
-          redmine_version: "4.2"
+          redmine_version: "4.2.11"
           ruby_version: "2.7"
       - run_tests:
           name: redmine-4.2 ruby-2.5
-          redmine_version: "4.2"
+          redmine_version: "4.2.11"
           ruby_version: "2.5"
       # Databases
       - run_tests:
